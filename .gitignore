@@ -43,3 +43,4 @@ app-example
 /android
 
 *.csv
+app/config.js

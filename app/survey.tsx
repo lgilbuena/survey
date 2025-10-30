@@ -3,17 +3,23 @@ import Slider from '@react-native-community/slider';
 import { useState } from "react";
 import { Button } from "@react-navigation/elements";
 import axios from "axios";
+import {useRouter } from 'expo-router';
+import Config from './config';
 export default function Survey() {
   const [sliderVal,setSliderVal] = useState(0);
-  function handleSliderChange(value){
+  const router = useRouter();
+  function handleSliderChange(value: any){
 
     setSliderVal(value)
   }
   const handleSubmit = async () =>{
     try{
       // replace ipv4 with your ipv4
-      const resp = await axios.post("http://ipv4:5000/api/submit",{value:sliderVal});
+      router.push('/welcome')
+      console.log(Config.IPV4)
+      const resp = await axios.post(`http://${Config.IPV4}:5000/api/submit`,{value:sliderVal});
       console.log("success!");
+      
     }catch(error){
       console.log(`received ${error}`);
     }

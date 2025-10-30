@@ -8,12 +8,12 @@ import {
   StatusBar,
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-
+import {useRouter } from 'expo-router';
 export default function WelcomeScreen() {
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const slideAnim = useRef(new Animated.Value(50)).current;
   const buttonScale = useRef(new Animated.Value(0.8)).current;
-
+  const router = useRouter();
   useEffect(() => {
     Animated.sequence([
       Animated.delay(200),
@@ -39,7 +39,7 @@ export default function WelcomeScreen() {
   }, []);
 
   const handleGetStarted = () => {
-    // Button action will be implemented later
+    router.push('/survey')
   };
 
   return (
@@ -99,7 +99,9 @@ export default function WelcomeScreen() {
           onPress={handleGetStarted}
           activeOpacity={0.8}
         >
-          <Text style={styles.buttonText}>Get Started</Text>
+          <Text style={styles.buttonText}
+          
+          >Get Started</Text>
         </TouchableOpacity>
 
         <Text style={styles.disclaimer}>
